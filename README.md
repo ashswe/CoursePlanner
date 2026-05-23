@@ -65,9 +65,25 @@ The application uses a local SQLite database stored within the device applicatio
 - Error handling and validation messages
 
 ---
+## Project Screenshots
+Screenshots of some main pages from the app.
 
----
+### Login Page:
+<img src="https://github.com/ashswe/CoursePlanner/blob/master/CoursePlanner/Images/App%20Screenshots/login_page.jpg">
 
-## License
+### Terms Overview:
+<img src="https://github.com/ashswe/CoursePlanner/blob/master/CoursePlanner/Images/App%20Screenshots/terms_overview_page.jpg">
 
-This project is for educational purposes.
+### Term Details:
+<img src="https://github.com/ashswe/CoursePlanner/blob/master/CoursePlanner/Images/App%20Screenshots/term_details_page.jpg">
+
+### Course Details:
+<img src="https://github.com/ashswe/CoursePlanner/blob/master/CoursePlanner/Images/App%20Screenshots/course_details_page1.jpg">
+<img src="https://github.com/ashswe/CoursePlanner/blob/master/CoursePlanner/Images/App%20Screenshots/course_details_page2.jpg">
+
+### Progress Report:
+<img src="https://github.com/ashswe/CoursePlanner/blob/master/CoursePlanner/Images/App%20Screenshots/progress_report_page.jpg">
+<img src="https://github.com/ashswe/CoursePlanner/blob/master/CoursePlanner/Images/App%20Screenshots/progress_report_page2.jpg">
+
+
+
