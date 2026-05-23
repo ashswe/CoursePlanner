@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoursePlanner.Pages.AddAssessment"
+             Title="Add Assessment">
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Header -->
+            <Grid 
+                Padding="20,15,20,10"
+                ColumnDefinitions="Auto,*"
+                RowDefinitions="Auto,Auto">
+
+                <Label 
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Add"
+                    FontSize="40"
+                    FontFamily="HussarBold"
+                    TextColor="{StaticResource MutedNavy}"
+                    HorizontalTextAlignment="Center" />
+
+                <Label 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="Assessment"
+                    FontSize="40"
+                    FontFamily="HussarBold"
+                    TextColor="{StaticResource MutedNavy}"
+                    HorizontalTextAlignment="Center" />
+            </Grid>
+
+            <BoxView 
+                Margin="0,10,0,10"  />
+
+            <!-- Main Form -->
+            <VerticalStackLayout 
+                Padding="20,25,20,20"
+                Spacing="22">
+
+                <!-- Assessment Title -->
+                <VerticalStackLayout 
+                    Spacing="8">
+                    
+                    <Label 
+                        Text="Assessment Title:"
+                        FontSize="18"
+                        FontAttributes="Bold" />
+
+                    <Entry 
+                        x:Name="AssessmentTitleEntry"
+                        HeightRequest="45"
+                        BackgroundColor="White"
+                        TextColor="Black" />
+                    
+                </VerticalStackLayout>
+
+                <!-- Type of Assessment -->
+                <VerticalStackLayout 
+                    Spacing="8">
+                    
+                    <Label 
+                        Text="Type of Assessment:"
+                        FontSize="18"
+                        FontAttributes="Bold" />
+
+                    <Picker 
+                        x:Name="AssessmentTypePicker"
+                        Title="Select Type"
+                        HeightRequest="45">
+                        
+                        <Picker.Items>
+                            <x:String>OA</x:String>
+                            <x:String>PA</x:String>
+                        </Picker.Items>
+                        
+                    </Picker>
+                    
+                </VerticalStackLayout>
+
+                <!-- Start Date -->
+                <VerticalStackLayout 
+                    Spacing="8">
+                    
+                    <Label 
+                        Text="Start Date:"
+                        FontSize="18"
+                        FontAttributes="Bold" />
+
+                    <Grid 
+                        ColumnDefinitions="*,Auto"
+                        ColumnSpacing="10">
+
+                        <DatePicker 
+                            x:Name="AssessmentStartDatePicker"
+                            Grid.Column="0"
+                            Format="MM, dd, yyyy"
+                            HeightRequest="45" />
+
+                    </Grid>
+                </VerticalStackLayout>
+
+                <!-- End Date -->
+                <VerticalStackLayout 
+                    Spacing="8">
+                    
+                    <Label 
+                        Text="End Date:"
+                        FontSize="18"
+                        FontAttributes="Bold" />
+
+                    <Grid 
+                        ColumnDefinitions="*,Auto"
+                        ColumnSpacing="10">
+
+                        <DatePicker 
+                            x:Name="AssessmentEndDatePicker"
+                            Grid.Column="0"
+                            Format="MM, dd, yyyy"
+                            HeightRequest="45" />
+                        
+                    </Grid>
+                    
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+            <BoxView 
+                HeightRequest="1"
+                Margin="0,5,0,0" />
+
+            <!-- Notifications Section -->
+            <VerticalStackLayout 
+                Padding="20,15,20,20"
+                Spacing="20">
+
+                <Label 
+                    Text="Set Notifications"
+                    FontSize="18"
+                    FontAttributes="Bold" />
+
+                <Grid 
+                    RowDefinitions="Auto,Auto"
+                    ColumnDefinitions="*,Auto"
+                    RowSpacing="18">
+
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Alert for Assessment Start"
+                        FontSize="18"
+                        VerticalOptions="Center" />
+
+                    <Switch 
+                        x:Name="AssessmentStartAlertSwitch"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        VerticalOptions="Center" />
+
+                    <Label 
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="Alert for Assessment End"
+                        FontSize="18"
+                        VerticalOptions="Center" />
+
+                    <Switch 
+                        x:Name="AssessmentEndAlertSwitch"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalOptions="Center" />
+                    
+                </Grid>
+            </VerticalStackLayout>
+
+            <!-- Bottom Divider -->
+            <BoxView 
+                HeightRequest="1"
+                Margin="0,80,0,0" />
+
+            <!-- Add Button -->
+            <VerticalStackLayout
+                Padding="40,18,40,30">
+
+                <Button 
+                    x:Name="AddAssessmentButton"
+                    Text="ADD"
+                    HeightRequest="45"
+                    Clicked="AddAssessmentButton_Clicked" />
+                
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

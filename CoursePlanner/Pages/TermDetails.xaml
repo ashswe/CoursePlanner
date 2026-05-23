@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CoursePlanner.Models"
+             x:Class="CoursePlanner.Pages.TermDetails"
+             Title="Term Details"
+             BackgroundColor="White">
+    <Grid 
+        RowDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto"
+        Padding="0">
+
+        <!-- Header -->
+        <Grid 
+            Grid.Row="0"
+            Padding="20,20,20,10" >
+
+            <Label 
+                Text="Term Details"
+                FontSize="40"
+                FontFamily="HussarBold"
+                TextColor="{StaticResource MutedNavy}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+        </Grid>
+
+        <!-- Divider -->
+        <BoxView 
+            Grid.Row="1"
+            Margin="0,10,0,10" />
+
+        <!-- Term Info Section -->
+        <VerticalStackLayout 
+            Grid.Row="2"
+            Padding="20,0,20,0"
+            Spacing="14">
+
+            <Entry 
+                x:Name="TermTitleEntry"
+                Placeholder="Term Title"
+                FontSize="22"
+                FontAttributes="Bold" />
+
+            <Grid 
+                ColumnDefinitions="Auto,*,Auto,*"
+                RowDefinitions="Auto"
+                ColumnSpacing="10"
+                VerticalOptions="Center">
+
+                <Label 
+                    Grid.Column="0"
+                    Text="Start:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    VerticalTextAlignment="Center" />
+
+                <DatePicker 
+                    x:Name="TermStartDatePicker"
+                    Grid.Column="1" />
+
+                <Label 
+                    Grid.Column="2"
+                    Text="End:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    VerticalTextAlignment="Center" />
+
+                <DatePicker 
+                    x:Name="TermEndDatePicker"
+                    Grid.Column="3" />
+            </Grid>
+
+            <!-- Action Buttons -->
+            <Grid 
+                ColumnDefinitions="*,*"
+                Margin="0,2,0,0">
+
+                <Button 
+                    Grid.Column="0"
+                    Text="UPDATE"
+                    Clicked="UpdateTermButton_Clicked" />
+
+                <Button 
+                    Grid.Column="1"
+                    Text="DELETE"
+                    Clicked="DeleteTermButton_Clicked" />
+            </Grid>
+        </VerticalStackLayout>
+
+        <!-- Divider -->
+        <BoxView 
+            Grid.Row="3"
+            HeightRequest="1"
+            Margin="0,18,0,10" />
+
+        <!-- Courses Header -->
+        <Label 
+            Grid.Row="4"
+            Text="Courses"
+            FontSize="26"
+            FontAttributes="Bold" 
+            Margin="10,0,0,10"/>
+
+        <!-- Courses List -->
+        <CollectionView 
+            Grid.Row="5"
+            x:Name="CoursesCollectionView"
+            ItemsSource="{Binding Courses}"
+            SelectionMode="Single"
+            SelectionChanged="CoursesCollectionView_SelectionChanged">
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout 
+                    Padding="30,30"
+                    Spacing="8">
+
+                    <Label 
+                        Text="No courses added yet."
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label 
+                        Text="Tap + ADD COURSE to create your first course for this term."
+                        HorizontalTextAlignment="Center" />
+
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate 
+                    x:DataType="models:Course">
+
+                    <VerticalStackLayout 
+                        Padding="20,10"
+                        Spacing="2">
+
+                        <Label 
+                            Text="{Binding Name}"
+                            FontSize="18"
+                            FontAttributes="Bold" />
+
+                        <Label 
+                            FontSize="16">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding StartDate, StringFormat='{0:MM, dd, yyyy}'}" />
+                                    <Span Text=" - " />
+                                    <Span Text="{Binding DueDate, StringFormat='{0:MM, dd, yyyy}'}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Bottom Section -->
+        <VerticalStackLayout 
+            Grid.Row="6"
+            Spacing="8"
+            Margin="0,18,0,20">
+
+            <BoxView />
+
+            <Label 
+                Text="Tap course to view/edit details"
+                FontSize="16"
+                HorizontalOptions="Center"
+                Margin="0,10,0,10" />
+
+            <Button 
+                Text="+ ADD COURSE"
+                Margin="40,20,40,0"
+                Clicked="AddCourseButton_Clicked" />
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

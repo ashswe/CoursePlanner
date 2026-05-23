@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoursePlanner.Pages.ProgressReport"
+             Title="Progress Report"
+             BackgroundColor="White">
+    <ScrollView>
+        <!-- Main Content -->
+        <VerticalStackLayout 
+                Padding="14,14,14,20" 
+                Spacing="18">
+
+            <!-- Header -->
+            <Label
+                 Text="Progress"
+                 FontFamily="HussarBold"
+                 FontSize="40"
+                 TextColor="{StaticResource MutedNavy}"
+                 HorizontalTextAlignment="Center" />
+
+            <Label
+                 Text="Report"
+                 FontFamily="HussarBold"
+                 FontSize="40"
+                 TextColor="{StaticResource MutedNavy}"
+                 HorizontalTextAlignment="Center"  />
+
+            <Label 
+                   Text="{Binding ReportDate, StringFormat='Date Generated: {0:MM/dd/yyyy}'}"
+                   FontSize="12"
+                   TextColor="#444" />
+
+            <!-- Divider -->
+            <BoxView
+                HeightRequest="1"/>
+
+
+            <!-- Course List Header -->
+            <Grid 
+                ColumnDefinitions="*,140" 
+                VerticalOptions="Center">
+
+                <Grid
+                    RowDefinitions="Auto,Auto">
+                    <Label
+                        Grid.Row="0"
+                        Text="{Binding CourseReportTitle}"                        
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center" />
+
+                    <Label
+                        Grid.Row="1"
+                        Text="Track and view your courses."
+                        FontSize="12"
+                        FontAttributes="Italic"
+                        TextColor="#444" 
+                        Margin="0,10,0,10"/>    
+                </Grid>
+
+                <!-- Search -->
+                <Border
+                    Grid.Column="1"
+                    Stroke="#7A7A7A"
+                    StrokeThickness="1"
+                    BackgroundColor="Transparent"
+                    Padding="6,2"
+                    StrokeShape="RoundRectangle 14">
+
+                    <Grid 
+                        ColumnDefinitions="Auto,*" 
+                        ColumnSpacing="4">
+
+                        <Label
+                            Text="⌕"
+                            FontSize="18"
+                            TextColor="#444"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center" />
+
+                        <Entry
+                            x:Name="SearchEntry"
+                            Grid.Column="1"
+                            Placeholder="Search"
+                            FontSize="14"
+                            ClearButtonVisibility="WhileEditing"
+                            HeightRequest="28"
+                            Margin="0,-6,0,-6"
+                            TextChanged="SearchEntry_TextChanged"/>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- Course Table -->
+            <Grid
+                ColumnDefinitions="1.1*,1.2*,1.1*,1.6*"
+                RowDefinitions="Auto,Auto,Auto,Auto"
+                ColumnSpacing="10"
+                RowSpacing="6">
+
+                <!-- Header Row -->
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Term"
+                    FontSize="16"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Course"
+                    FontSize="16"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Text="Status"
+                    FontSize="16"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Text="Due Date"
+                    FontSize="16"
+                    FontAttributes="Bold" />
+            </Grid>
+            <!-- Course List -->
+            <CollectionView
+                x:Name="CoursesCollectionView"
+                ItemsSource="{Binding FilteredCourses}"
+                EmptyView="No courses found."
+                HeightRequest="300"
+                SelectionMode="Single"
+                SelectionChanged="CoursesCollectionView_SelectionChanged">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            ColumnDefinitions="1.1*,1.2*,1.1*,1.6*"
+                            ColumnSpacing="10"
+                                Padding="0,4">
+
+                            <Label
+                                Grid.Column="0"
+                                Text="{Binding TermTitle}"
+                                FontSize="14" />
+
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding CourseName}"
+                                FontSize="14"/>
+
+                            <Label
+                                Grid.Column="2"
+                                Text="{Binding CourseStatus}"
+                                FontSize="14"/>
+
+                            <Label
+                                Grid.Column="3"
+                                Text="{Binding CourseDueDate, StringFormat='{}{0:MM/dd/yyyy}'   }"
+                                FontSize="14" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Empty space -->
+            <Grid HeightRequest="50" />
+
+            <!-- Divider -->
+            <BoxView
+                HeightRequest="1" />
+
+            <!-- Term Completion -->
+            <VerticalStackLayout 
+                Spacing="10">
+
+                <Label
+                    Text="{Binding TermReportTitle}"
+                    FontSize="22"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Text="Track your term progress based on course completion."
+                    FontSize="12"
+                    FontAttributes="Italic"
+                    TextColor="#444" />
+
+                <CollectionView
+                    x:Name="TermCompletionCollectionView"
+                    ItemsSource="{Binding TermCompletionItems}"
+                    SelectionMode="Single"
+                    EmptyView="No term progress available."
+                    SelectionChanged="TermCompletionCollectionView_SelectionChanged">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                RowDefinitions="Auto,Auto"
+                                ColumnSpacing="10"
+                                RowSpacing="2"
+                                Padding="0,4">
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding TermName}"
+                                    FontSize="16"
+                                    FontAttributes="Bold" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="{Binding DateRange}"
+                                    FontSize="16"/>
+
+                                <Label
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    Text="{Binding CompletionPercentage, StringFormat='{}{0}% Complete'}"
+                                    FontSize="16"
+                                    VerticalOptions="Center"
+                                    HorizontalTextAlignment="End" />
+                                
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CoursePlanner.Pages.AddTerm"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="White"
+    Title="Add Term">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+        <!-- Header -->
+        <Grid 
+            Grid.Row="0"
+             Padding="20,10,20,10"
+             VerticalOptions="Center">
+            
+            <!-- Title -->
+            <Label
+                Text="Add Term"
+                FontSize="40"
+                FontFamily="HussarBold"
+                TextColor="{StaticResource MutedNavy}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+            
+        </Grid>
+
+        <!-- Divider -->
+        <BoxView 
+            Grid.Row="1" 
+            Margin="0,10,0,10"/>
+
+        <!-- Form -->
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout
+                Padding="25,20"
+                Spacing="18">
+
+                <!-- Term Title -->
+                <Label 
+                    Text="Term Title:"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    TextColor="Black" />
+
+                <Entry 
+                    x:Name="TitleEntry"/>
+
+                <!-- Start Date -->
+                <Label 
+                    Text="Start Date:"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    TextColor="Black" />
+
+                <DatePicker 
+                    x:Name="StartDatePicker"
+                    FontSize="16" />
+
+                <!-- End Date -->
+                <Label 
+                    Text="End Date:"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    TextColor="Black" />
+
+                <DatePicker 
+                    x:Name="EndDatePicker"
+                    FontSize="16" />
+                
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Button -->
+        <VerticalStackLayout
+            Grid.Row="3"
+            Spacing="10">
+
+            <BoxView />
+
+            <Button 
+                Text="ADD"          
+                Clicked="SaveButton_Clicked" />
+            
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
